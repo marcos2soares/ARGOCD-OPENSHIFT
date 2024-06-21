@@ -1,0 +1,23 @@
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  labels:
+    app: appcolor
+  name: appcolor-build
+spec:
+  source:
+    type: Git
+    git:
+      uri: https://github.com/marcos2soares/ARGOCD-OPENSHIFT.git
+    contextDir: source_appcolor
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile
+  output:
+    to:
+      kind: ImageStreamTag
+      name: appcolor:v1.0
+  triggers:
+    - type: ConfigChange

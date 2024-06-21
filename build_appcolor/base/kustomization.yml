@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+patches:
+  - target:
+      kind: BuildConfig
+      name: appcolor-build
+    path: buildconfig-patch.yaml
+resources:
+- ./BuildConfig/appcolor-build.yaml
+- ./Namespace/appcolor.yaml
+- ./RoleBinding/image-puller-binding-dev.yaml
+- ./RoleBinding/image-puller-binding-prd.yaml
+- ./ImageStream/appcolor.yaml

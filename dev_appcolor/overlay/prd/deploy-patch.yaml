@@ -1,0 +1,6 @@
+- op: replace
+  path: "/metadata/name"
+  value: appvt121170-deploy-prd
+- op: replace
+  path:  "/spec/template/spec/containers/0/image"
+  value: image-registry.openshift-image-registry.svc:5000/appvt121170-prd/appvt121170

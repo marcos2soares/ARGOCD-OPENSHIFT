@@ -1,0 +1,21 @@
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    haproxy.router.openshift.io/balance: 'random'
+    haproxy.router.openshift.io/disable_cookies: 'true'
+  labels:
+    app: appcolor
+  name: appcolor-dev-route-2
+spec:
+  tls:
+    insecureEdgeTerminationPolicy: Redirect
+    termination: edge
+  to:
+    kind: Service
+    name: appcolor-dev-svc
+    weight: 100
+  port:
+    targetPort: appcolor-dev-svc-port
+  wildcardPolicy: None
