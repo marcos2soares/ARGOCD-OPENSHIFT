@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: appcolor-dev-pink
+  namespace: openshift-gitops
+spec:
+  destination:
+    namespace: appcolor-dev
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: dev_appcolor/pink
+    repoURL: https://github.com/marcos2soares/ARGOCD-OPENSHIFT.git
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
