@@ -81,4 +81,6 @@ echo ""
 
 oc get is appcolor -n appcolor -o json | jq -r '.metadata.name as $name | .status.tags[].tag | "\($name):\(.)"'
 
+echo ""
+
 oc logout 
