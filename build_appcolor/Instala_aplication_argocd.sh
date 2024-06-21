@@ -13,6 +13,7 @@ echo "- op: replace
 
 #   Git
 
+DIR=$(pwd)
 cd ..
 git add .
 git commit -m "Commit Versao v1.0"
@@ -21,6 +22,8 @@ git push
 
 oc login -u vt121170 -p $SENHAOC
 
-oc apply -f  aplication_appcolor_argocd.yaml
+cd $DIR
+
+oc apply -f  ./aplication_appcolor_argocd.yaml
 
 oc logout 
