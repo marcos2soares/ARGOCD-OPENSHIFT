@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: appcolor
+    versao: v4.0
+    app.kubernetes.io/part-of: appcolor-dev-v4.0
+  name: appcolor-dev-deploy-v4.0
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: appcolor
+      versao: v4.0
+  template:
+    metadata:
+      labels:
+        app: appcolor
+        versao: v4.0
+    spec:
+      containers:
+        - image: default-route-openshift-image-registry.apps.ocplab.vtal.intra/appcolor/appcolor:v4.0
+          name: appcolor
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5000
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1000Mi
+            requests:
+              cpu: 200m
+              memory: 200Mi
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 10

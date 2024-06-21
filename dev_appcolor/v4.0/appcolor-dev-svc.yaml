@@ -1,0 +1,16 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: appcolor
+    versao: v4.0
+  name: appcolor-dev-svc-v4-0
+spec:
+  ports:
+  - name: appcolor-dev-svc-port-v4-0
+    port: 5000
+    targetPort: 5000
+  selector:
+    app: appcolor
+    versao: v4.0
