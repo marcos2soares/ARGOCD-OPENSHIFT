@@ -5,9 +5,8 @@ metadata:
   name: image-puller-binding-prd
   namespace: appcolor
 subjects:
-- kind: ServiceAccount
-  name: default
-  namespace: appcolor-prd
+- kind: Group
+  name: system:serviceaccounts:appcolor-prd
 roleRef:
   kind: ClusterRole
   name: system:image-puller

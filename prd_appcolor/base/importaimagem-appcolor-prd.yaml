@@ -5,10 +5,10 @@ metadata:
   namespace: appcolor-prd
 spec:
   tags:
-  - name: v4.0
+  - name: pink
     from:
       kind: DockerImage
-      name: image-registry.openshift-image-registry.svc:5000/appcolor/appcolor:v4.0
+      name: image-registry.openshift-image-registry.svc:5000/appcolor/appcolor:pink
     importPolicy: {}
     referencePolicy:
       type: Source

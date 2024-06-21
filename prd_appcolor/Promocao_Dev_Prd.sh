@@ -35,7 +35,7 @@ echo ""
 oc get is appcolor -n appcolor -o json | jq -r '.metadata.name as $name | .status.tags[].tag | "\($name):\(.)"'
 
 
-echo  ""
+echo ""
 oc logout  > /dev/null 2>&1
 
 
@@ -62,12 +62,29 @@ oc login -u vt121170 -p $SENHAOC   > /dev/null 2>&1
 oc apply -f namespace-appcolor-prd.yaml
 
 echo ""
-green_text "CRIANDO IMAGESTREAM  appcolor-${AMBIENTE} - AMBIENTE: ${AMBIENTE}  SE NECESSARIO"
+green_text "IMPORTANTO IMAGEM PARA O  IMAGESTREAM  appcolor-${AMBIENTE} - AMBIENTE: ${AMBIENTE}"
 echo ""
 
-oc apply -f imagestream-appcolor-prd.yaml
+DIR=$(pwd)
+
+cd base
+
+sed -e "s/{VERSAO}/${VERSAO}/g" importaimagem-appcolor-prd.yaml   >  importaimagem-appcolor-prd_temp.yaml
+mv  importaimagem-appcolor-prd_temp.yaml  importaimagem-appcolor-prd.yaml
+
+oc apply -f importaimagem-appcolor-prd.yaml
 
 
+echo ""
+green_text "LISTANDO AS IMAGENS NO IMAGESTREAM da APLICACAO appcolor-${AMBIENTE} = AMBIENTE: ${AMBIENTE}"
+echo ""
+
+
+oc get is appcolor -n appcolor-${AMBIENTE}  -o json | jq -r '.metadata.name as $name | .status.tags[].tag | "\($name):\(.)"'
+
+
+echo  ""
 
 oc logout  > /dev/null 2>&1
+
 
