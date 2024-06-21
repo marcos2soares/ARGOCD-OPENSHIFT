@@ -56,6 +56,8 @@ echo ""
 
 argocd app sync appcolor-build
 
+argocd app wait appcolor-build
+
 argocd logout  openshift-gitops-server-openshift-gitops.apps.ocplab.vtal.intra
 
 #  Starta o Build
