@@ -88,9 +88,12 @@ echo ""
 green_text "CRIANDO NAMESPACE appcolor-dev SE NECESSARIO"
 echo ""
 
-exit 4
 
 cd $DIR
+
+echo  ""
+oc login -u vt121170 -p $SENHAOC   > /dev/null 2>&1
+echo ""
 
 oc apply -f namespace-appcolor-dev.yaml
 
@@ -100,15 +103,12 @@ echo ""
 
 oc apply -f $VERSAO/aplication_appcolor_argocd.yaml
 
-echo  ""
-oc login -u vt121170 -p $SENHAOC   > /dev/null 2>&1
-echo ""
-
 
 echo  ""
 oc logout  > /dev/null 2>&1
 
 
+exit 4
 
 
 echo ""
