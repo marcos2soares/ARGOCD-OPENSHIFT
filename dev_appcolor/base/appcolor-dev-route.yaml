@@ -4,14 +4,15 @@ kind: Route
 metadata:
   labels:
     app: appcolor
-  name: appcolor-dev-route
+    versao: {VERSAO}
+  name: appcolor-dev-route-{VERSAO}
 spec:
   tls:
     insecureEdgeTerminationPolicy: Redirect
     termination: edge
   to:
     kind: Service
-    name: appcolor-dev-svc
+    name: appcolor-dev-svc-{VERSAO}
     weight: 100
   port:
     targetPort: appcolor-dev-svc-port

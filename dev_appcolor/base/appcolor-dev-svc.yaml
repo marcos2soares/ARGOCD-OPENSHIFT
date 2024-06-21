@@ -4,7 +4,8 @@ kind: Service
 metadata:
   labels:
     app: appcolor
-  name: appcolor-dev-svc
+    versao: {VERSAO}
+  name: appcolor-dev-svc-{VERSAO}
 spec:
   ports:
   - name: appcolor-dev-svc-port
@@ -12,3 +13,4 @@ spec:
     targetPort: 5000
   selector:
     app: appcolor
+    versao: {VERSAO}
