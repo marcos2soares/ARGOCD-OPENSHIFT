@@ -1,6 +1,6 @@
 FROM registry.redhat.io/ubi8/python-36
 
-ENV COLOR=blue
+ENV COLOR=pink
 
 WORKDIR /
 

@@ -108,7 +108,7 @@ echo ""
 
 
 
-oc apply -f $VERSAO/aplication_appcolor_argocd.yaml > result.txt
+oc apply -f $VERSAO/aplication_appcolor_argocd.yaml  | tee  result.txt
 
 RESULT=$(cat result.txt  | awk '{ print $2 }')
 [ "X$RESULT" = "Xunchanged" ] &&  oc rollout restart deploy appcolor-dev-deploy-${VERSAO}  -n appcolor-${AMBIENTE}
