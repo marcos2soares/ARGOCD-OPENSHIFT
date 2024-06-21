@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Carrega Variaveis sensiveis
+. ./env 
+
 # Função para exibir texto em vermelho
 function red_text {
     echo -e "\033[31m$1\033[0m"
