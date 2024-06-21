@@ -39,20 +39,22 @@ echo "- op: replace
   path:  \"/spec/output/to/name\"
   value: appcolor:$VERSAO"  > base/buildconfig-patch.yaml
 
-#   Git 
+echo ""
+green_text "FAZENDO PUSH DA APLICACAO PARA O  GITHUB   - $VERSAO"
+echo ""
 
 cd ..
 git add .
 git commit -m "Commit Versao $VERSAO"
 git push
 
-#   Argocd
 
-argocd login --username admin --password  $SENHAARGOCD openshift-gitops-server-openshift-gitops.apps.ocplab.vtal.intra --grpc-web
 
 echo ""
 green_text "SINCRONIZANDO ARGOCD COM REPOSITORIO  - $VERSAO"
 echo ""
+
+argocd login --username admin --password  $SENHAARGOCD openshift-gitops-server-openshift-gitops.apps.ocplab.vtal.intra --grpc-web
 
 argocd app sync appcolor-build
 
@@ -60,24 +62,23 @@ argocd app wait appcolor-build
 
 argocd logout  openshift-gitops-server-openshift-gitops.apps.ocplab.vtal.intra
 
-#  Starta o Build
 
+
+
+echo ""
+green_text "COMPILANDO APLICACAO NO OPENSHIFT - $VERSAO"
+echo ""
 
 oc login -u vt121170 -p $SENHAOC
-
-echo ""
-green_text "COMPILANDO APLICACAO - $VERSAO"
-echo ""
-
 
 oc start-build appcolor-build -n appcolor --follow
 
 
 echo ""
-green_text "LISTANDO IMAGESTREAM - TAG: $VERSAO"
+green_text "LISTANDO AS IMAGENS NO IMAGESTREAM appcolor"
 echo ""
 
-oc get is -n appcolor
 
+oc get is appcolor -n appcolor -o json | jq -r '.metadata.name as $name | .status.tags[].tag | "\($name):\(.)"'
 
 oc logout 
