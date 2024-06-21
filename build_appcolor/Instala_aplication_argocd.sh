@@ -1,3 +1,7 @@
+# Carrega Variaveis Senseiveis
+
+. ./.env
+
 echo "Inicializa Build Aplicaçao Versão: v1.0"
 
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Carrega Variaveis sensiveis
-. ./env 
+. ./.env 
 
 # Função para exibir texto em vermelho
 function red_text {
