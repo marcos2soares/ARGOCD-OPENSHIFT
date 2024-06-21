@@ -7,7 +7,7 @@ metadata:
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: appcolor-dev
+  namespace: appcolor-prd
 roleRef:
   kind: ClusterRole
   name: system:image-puller
