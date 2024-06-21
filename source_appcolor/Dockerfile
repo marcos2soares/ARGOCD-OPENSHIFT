@@ -1,5 +1,6 @@
 FROM registry.redhat.io/ubi8/python-36
 
+ARG COLOR=red
 
 WORKDIR /
 
