@@ -54,14 +54,17 @@ echo ""
 green_text "SINCRONIZANDO ARGOCD COM REPOSITORIO  - $VERSAO"
 echo ""
 
+blue_text  ""
 argocd login --username admin --password  $SENHAARGOCD openshift-gitops-server-openshift-gitops.apps.ocplab.vtal.intra --grpc-web
+echo ""
 
 argocd app sync appcolor-build
 
 argocd app wait appcolor-build
 
+echo ""
 argocd logout  openshift-gitops-server-openshift-gitops.apps.ocplab.vtal.intra
-
+echo ""
 
 
 
@@ -69,7 +72,10 @@ echo ""
 green_text "COMPILANDO APLICACAO NO OPENSHIFT - $VERSAO"
 echo ""
 
+
+blue_text  ""
 oc login -u vt121170 -p $SENHAOC
+echo ""
 
 oc start-build appcolor-build -n appcolor --follow
 
@@ -81,6 +87,6 @@ echo ""
 
 oc get is appcolor -n appcolor -o json | jq -r '.metadata.name as $name | .status.tags[].tag | "\($name):\(.)"'
 
-echo ""
 
+blue_test  ""
 oc logout 
