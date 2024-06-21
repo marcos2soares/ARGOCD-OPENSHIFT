@@ -64,9 +64,9 @@ cd $VERSAO
 VERSAO_ALT=$(echo "$VERSAO" | awk '{gsub(/\./, "-"); print}')
 
 
-sed -e "s/{VERSAO}/${VERSAO}/g"  -e "s/{VERSAO_ALT}/${VERSAO_ALT}/g"  appcolor-dev-deploy.yaml  > appcolor-dev-deploy_temp.yaml
+sed -e "s/{VERSAO}/${VERSAO}/g" -e "s/{VERSAO_ALT}/${VERSAO_ALT}/g"  appcolor-dev-deploy.yaml  > appcolor-dev-deploy_temp.yaml
 sed -e "s/{VERSAO}/${VERSAO}/g" -e "s/{VERSAO_ALT}/${VERSAO_ALT}/g" appcolor-dev-route.yaml  > appcolor-dev-route_temp.yaml
-sed -e "s/{VERSAO}/${VERSAO_ALT}/g" -e "s/{VERSAO_ALT}/${VERSAO_ALT}/g" appcolor-dev-svc.yaml  > appcolor-dev-svc_temp.yaml
+sed -e "s/{VERSAO}/${VERSAO}/g" -e "s/{VERSAO_ALT}/${VERSAO_ALT}/g" appcolor-dev-svc.yaml  > appcolor-dev-svc_temp.yaml
 
 sed -e "s/{VERSAO}/${VERSAO}/g" aplication_appcolor_argocd.yaml >  aplication_appcolor_argocd_temp.yaml
 

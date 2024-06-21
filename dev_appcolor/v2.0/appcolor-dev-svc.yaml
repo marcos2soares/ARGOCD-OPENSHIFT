@@ -4,13 +4,13 @@ kind: Service
 metadata:
   labels:
     app: appcolor
-    versao: v2-0
+    versao: v2.0
   name: appcolor-dev-svc-v2-0
 spec:
   ports:
-  - name: appcolor-dev-svc-port-v2-0
+  - name: appcolor-dev-svc-port-v2.0
     port: 5000
     targetPort: 5000
   selector:
     app: appcolor
-    versao: v2-0
+    versao: v2.0
