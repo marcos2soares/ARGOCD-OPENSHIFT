@@ -109,6 +109,8 @@ echo ""
 oc apply -f $VERSAO/aplication_appcolor_argocd.yaml
 
 
+
+
 echo  ""
 oc logout  > /dev/null 2>&1
 
