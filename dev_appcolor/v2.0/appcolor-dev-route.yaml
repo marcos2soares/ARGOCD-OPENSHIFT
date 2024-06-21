@@ -15,5 +15,5 @@ spec:
     name: appcolor-dev-svc-v2-0
     weight: 100
   port:
-    targetPort: appcolor-dev-svc-port-v2.0
+    targetPort: appcolor-dev-svc-port-v2-0
   wildcardPolicy: None

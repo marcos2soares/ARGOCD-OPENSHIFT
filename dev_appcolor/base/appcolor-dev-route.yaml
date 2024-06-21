@@ -15,5 +15,5 @@ spec:
     name: appcolor-dev-svc-{VERSAO_ALT}
     weight: 100
   port:
-    targetPort: appcolor-dev-svc-port-{VERSAO}
+    targetPort: appcolor-dev-svc-port-{VERSAO_ALT}
   wildcardPolicy: None

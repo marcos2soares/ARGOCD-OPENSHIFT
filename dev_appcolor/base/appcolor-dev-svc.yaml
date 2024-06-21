@@ -8,7 +8,7 @@ metadata:
   name: appcolor-dev-svc-{VERSAO_ALT}
 spec:
   ports:
-  - name: appcolor-dev-svc-port-{VERSAO}
+  - name: appcolor-dev-svc-port-{VERSAO_ALT}
     port: 5000
     targetPort: 5000
   selector:

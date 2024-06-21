@@ -8,7 +8,7 @@ metadata:
   name: appcolor-dev-svc-v2-0
 spec:
   ports:
-  - name: appcolor-dev-svc-port-v2.0
+  - name: appcolor-dev-svc-port-v2-0
     port: 5000
     targetPort: 5000
   selector:
