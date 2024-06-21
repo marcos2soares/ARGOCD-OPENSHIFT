@@ -12,8 +12,8 @@ spec:
     termination: edge
   to:
     kind: Service
-    name: appcolor-dev-svc-{VERSAO}
+    name: appcolor-dev-svc-{VERSAO_ALT}
     weight: 100
   port:
-    targetPort: appcolor-dev-svc-port
+    targetPort: appcolor-dev-svc-port-{VERSAO}
   wildcardPolicy: None

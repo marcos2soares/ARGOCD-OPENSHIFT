@@ -5,10 +5,10 @@ metadata:
   labels:
     app: appcolor
     versao: {VERSAO}
-  name: appcolor-dev-svc-{VERSAO}
+  name: appcolor-dev-svc-{VERSAO_ALT}
 spec:
   ports:
-  - name: appcolor-dev-svc-port
+  - name: appcolor-dev-svc-port-{VERSAO}
     port: 5000
     targetPort: 5000
   selector:

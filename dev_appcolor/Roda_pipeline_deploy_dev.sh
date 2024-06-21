@@ -59,10 +59,15 @@ cp -rp base/* $VERSAO/
 DIR=$(pwd)
 cd $VERSAO
 
+# PROBLEMA COM SERVICE. NAo pode ter ponto no nome
 
-sed -e "s/{VERSAO}/${VERSAO}/g" appcolor-dev-deploy.yaml  > appcolor-dev-deploy_temp.yaml
-sed -e "s/{VERSAO}/${VERSAO}/g" appcolor-dev-route.yaml  > appcolor-dev-route_temp.yaml
-sed -e "s/{VERSAO}/${VERSAO}/g" appcolor-dev-svc.yaml  > appcolor-dev-svc_temp.yaml
+VERSAO_ALT=$(echo "$VERSAO" | awk '{gsub(/\./, "-"); print}')
+
+
+sed -e "s/{VERSAO}/${VERSAO}/g"  -e "s/{VERSAO_ALT}/${VERSAO_ALT}/g"  appcolor-dev-deploy.yaml  > appcolor-dev-deploy_temp.yaml
+sed -e "s/{VERSAO}/${VERSAO}/g" -e "s/{VERSAO_ALT}/${VERSAO_ALT}/g" appcolor-dev-route.yaml  > appcolor-dev-route_temp.yaml
+sed -e "s/{VERSAO}/${VERSAO_ALT}/g" -e "s/{VERSAO_ALT}/${VERSAO_ALT}/g" appcolor-dev-svc.yaml  > appcolor-dev-svc_temp.yaml
+
 sed -e "s/{VERSAO}/${VERSAO}/g" aplication_appcolor_argocd.yaml >  aplication_appcolor_argocd_temp.yaml
 
 mv aplication_appcolor_argocd_temp.yaml aplication_appcolor_argocd.yaml
@@ -107,22 +112,4 @@ oc apply -f $VERSAO/aplication_appcolor_argocd.yaml
 echo  ""
 oc logout  > /dev/null 2>&1
 
-
-exit 4
-
-
-echo ""
-green_text "SINCRONIZANDO  APLICACAO appcolor - AMBIENTE: ${AMBIENTE}  - $VERSAO - ARGOCD"
-echo ""
-
-echo  ""
-argocd login --username admin --password  $SENHAARGOCD openshift-gitops-server-openshift-gitops.apps.ocplab.vtal.intra --grpc-web   > /dev/null 2>&1
-echo ""
-
-argocd app sync appcolor-dev-${VERSAO}
-
-
-echo ""
-argocd logout  openshift-gitops-server-openshift-gitops.apps.ocplab.vtal.intra   > /dev/null 2>&1
-echo ""
 
