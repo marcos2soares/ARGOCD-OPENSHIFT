@@ -55,7 +55,7 @@ green_text "SINCRONIZANDO ARGOCD COM REPOSITORIO  - $VERSAO"
 echo ""
 
 echo  ""
-argocd login --username admin --password  $SENHAARGOCD openshift-gitops-server-openshift-gitops.apps.ocplab.vtal.intra --grpc-web
+argocd login --username admin --password  $SENHAARGOCD openshift-gitops-server-openshift-gitops.apps.ocplab.vtal.intra --grpc-web   > /dev/null 2>&1
 echo ""
 
 argocd app sync appcolor-build
@@ -63,7 +63,7 @@ argocd app sync appcolor-build
 argocd app wait appcolor-build
 
 echo ""
-argocd logout  openshift-gitops-server-openshift-gitops.apps.ocplab.vtal.intra
+argocd logout  openshift-gitops-server-openshift-gitops.apps.ocplab.vtal.intra   > /dev/null 2>&1
 echo ""
 
 
@@ -74,7 +74,7 @@ echo ""
 
 
 echo  ""
-oc login -u vt121170 -p $SENHAOC
+oc login -u vt121170 -p $SENHAOC   > /dev/null 2>&1
 echo ""
 
 oc start-build appcolor-build -n appcolor --follow
@@ -89,4 +89,4 @@ oc get is appcolor -n appcolor -o json | jq -r '.metadata.name as $name | .statu
 
 
 echo  ""
-oc logout 
+oc logout  > /dev/null 2>&1
