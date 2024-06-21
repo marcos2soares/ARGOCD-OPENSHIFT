@@ -106,9 +106,14 @@ echo ""
 green_text "CRIANDO APLICACAO appcolor - AMBIENTE: ${AMBIENTE}  - $VERSAO NO ARGOCD"
 echo ""
 
-oc apply -f $VERSAO/aplication_appcolor_argocd.yaml
 
 
+oc apply -f $VERSAO/aplication_appcolor_argocd.yaml > result.txt
+
+RESULT=$(cat result.txt  | awk '{ print $2 }')
+[ "X$RESULT" = "Xunchanged" ] &&  echo "Executa Comando"
+
+rm -f result.txt
 
 
 echo  ""
