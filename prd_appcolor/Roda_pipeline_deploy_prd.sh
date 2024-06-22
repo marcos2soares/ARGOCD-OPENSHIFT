@@ -97,6 +97,7 @@ git commit -m "Deploy Ambiente Prd ${VERSAODEV}"
 git push
 
 
+cd $DIR
 
 echo  ""
 oc login -u vt121170 -p $SENHAOC   > /dev/null 2>&1
@@ -112,7 +113,6 @@ echo ""
 green_text "CRIANDO APLICACAO appcolor - AMBIENTE: ${AMBIENTE}  - $VERSAODEV NO ARGOCD"
 echo ""
 
-cd $DIR
 
 oc apply -f $VERSAO/aplication_appcolor_argocd.yaml  | tee  result.txt
 
