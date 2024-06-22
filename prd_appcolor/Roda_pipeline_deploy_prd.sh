@@ -103,6 +103,12 @@ oc login -u vt121170 -p $SENHAOC   > /dev/null 2>&1
 echo ""
 
 echo ""
+green_text "TAGEANDO appcolor - AMBIENTE: ${AMBIENTE}  - $VERSAODEV PARA latest"
+echo ""
+
+oc apply -f $VERSAO/taglatest-appcolor-prd.yaml
+
+echo ""
 green_text "CRIANDO APLICACAO appcolor - AMBIENTE: ${AMBIENTE}  - $VERSAODEV NO ARGOCD"
 echo ""
 
