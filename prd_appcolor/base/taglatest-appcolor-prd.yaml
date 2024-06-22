@@ -10,7 +10,7 @@ spec:
   - name: latest
     from:
       kind: DockerImage
-      name: image-registry.openshift-image-registry.svc:5000/appcolor/appcolor:{VERSAO}
+      name: appcolor:{VERSAO}
     importPolicy: {}
     referencePolicy:
       type: Source
