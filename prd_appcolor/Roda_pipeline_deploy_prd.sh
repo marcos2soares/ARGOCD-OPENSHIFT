@@ -53,11 +53,11 @@ read CONFIRMA
 
 
 
-mkdir $VERSAO  > /dev/null 2>&1
-cp -rp base/* $VERSAO/
+mkdir latest  > /dev/null 2>&1
+cp -rp base/* latest/
 
 DIR=$(pwd)
-cd $VERSAO
+cd latest
 
 
 sed -e "s/{VERSAO}/${VERSAO}/g"  taglatest-appcolor-prd.yaml > taglatest-appcolor-prd_temp.yaml

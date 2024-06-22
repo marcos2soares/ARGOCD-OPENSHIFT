@@ -59,10 +59,10 @@ echo ""
 
 oc login -u vt121170 -p $SENHAOC   > /dev/null 2>&1
 
-mkdir $VERSAO  > /dev/null 2>&1
-cp -rp base/* $VERSAO/
+mkdir latest  > /dev/null 2>&1
+cp -rp base/* latest/
 DIR=$(pwd)
-cd $VERSAO
+cd latest
 
 
 oc apply -f namespace-appcolor-prd.yaml
