@@ -19,7 +19,7 @@ spec:
         versao: {VERSAO}
     spec:
       containers:
-        - image: default-route-openshift-image-registry.apps.ocplab.vtal.intra/appcolor/appcolor:{VERSAO}
+        - image: appcolor:{VERSAO}
           name: appcolor
           imagePullPolicy: Always
           ports:
