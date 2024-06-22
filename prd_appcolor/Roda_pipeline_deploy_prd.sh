@@ -2,7 +2,7 @@
 
 # Carrega Variaveis sensiveis
 . ./.env 
-AMBIENTE=dev
+AMBIENTE=prd
 
 # Função para exibir texto em vermelho
 function red_text {
@@ -28,11 +28,11 @@ function yellow_text {
 oc login -u vt121170 -p $SENHAOC   > /dev/null 2>&1
 
 echo ""
-green_text "LISTANDO AS IMAGENS NO IMAGESTREAM da APLICACAO appcolor"
+green_text "LISTANDO AS IMAGENS PROMOVIDAS PARA O IMAGESTREAM da APLICACAO appcolor do AMBIENTE: ${AMBIENTE}"
 echo ""
 
 
-oc get is appcolor -n appcolor -o json | jq -r '.metadata.name as $name | .status.tags[].tag | "\($name):\(.)"'
+oc get is appcolor -n appcolor-prd -o json | jq -r '.metadata.name as $name | .status.tags[].tag | "\($name):\(.)"'
 
 
 echo  ""
@@ -59,6 +59,14 @@ cp -rp base/* $VERSAO/
 DIR=$(pwd)
 cd $VERSAO
 
+
+sed -e "s/{VERSAO}/${VERSAO}/g"  taglatest-appcolor-prd.yaml > taglatest-appcolor-prd_temp.yaml
+mv taglatest-appcolor-prd_temp.yaml taglatest-appcolor-prd.yaml
+
+
+VERSAODEV=$VERSAO
+VERSAO=latest
+
 # PROBLEMA COM SERVICE. NAo pode ter ponto no nome
 
 VERSAO_ALT=$(echo "$VERSAO" | awk '{gsub(/\./, "-"); print}')
@@ -78,32 +86,24 @@ mv appcolor-dev-svc_temp.yaml appcolor-dev-svc.yaml
 
 
 echo ""
-green_text "FAZENDO PUSH DA APLICACAO PARA O  GITHUB   - $VERSAO"
+green_text "FAZENDO PUSH DA APLICACAO PARA O  GITHUB  - AMBIENTE: ${AMBIENTE}  - VERSAO: $VERSAODEV"
 echo ""
 
 
 cd $DIR
 cd ..
 git add .
-git commit -m "Deploy Ambiente Dev ${VERSAO}"
+git commit -m "Deploy Ambiente Prd ${VERSAODEV}"
 git push
 
 
-echo ""
-green_text "CRIANDO NAMESPACE appcolor-dev SE NECESSARIO"
-echo ""
-
-
-cd $DIR
 
 echo  ""
 oc login -u vt121170 -p $SENHAOC   > /dev/null 2>&1
 echo ""
 
-oc apply -f namespace-appcolor-dev.yaml
-
 echo ""
-green_text "CRIANDO APLICACAO appcolor - AMBIENTE: ${AMBIENTE}  - $VERSAO NO ARGOCD"
+green_text "CRIANDO APLICACAO appcolor - AMBIENTE: ${AMBIENTE}  - $VERSAODEV NO ARGOCD"
 echo ""
 
 
@@ -111,7 +111,7 @@ echo ""
 oc apply -f $VERSAO/aplication_appcolor_argocd.yaml  | tee  result.txt
 
 RESULT=$(cat result.txt  | awk '{ print $2 }')
-[ "X$RESULT" = "Xunchanged" ] &&  oc rollout restart deploy appcolor-dev-deploy-${VERSAO}  -n appcolor-${AMBIENTE}
+[ "X$RESULT" = "Xunchanged" ] &&  oc rollout restart deploy appcolor-prd-deploy-${VERSAO}  -n appcolor-${AMBIENTE}
 
 
 rm -f result.txt

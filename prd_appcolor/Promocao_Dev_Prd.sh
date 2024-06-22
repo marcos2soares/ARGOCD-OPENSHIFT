@@ -59,15 +59,19 @@ echo ""
 
 oc login -u vt121170 -p $SENHAOC   > /dev/null 2>&1
 
+mkdir $VERSAO  > /dev/null 2>&1
+cp -rp base/* $VERSAO/
+DIR=$(pwd)
+cd $VERSAO
+
+
 oc apply -f namespace-appcolor-prd.yaml
 
 echo ""
 green_text "IMPORTANTO IMAGEM PARA O  IMAGESTREAM  appcolor-${AMBIENTE} - AMBIENTE: ${AMBIENTE}"
 echo ""
 
-DIR=$(pwd)
 
-cd base
 
 sed -e "s/{VERSAO}/${VERSAO}/g" importaimagem-appcolor-prd.yaml   >  importaimagem-appcolor-prd_temp.yaml
 mv  importaimagem-appcolor-prd_temp.yaml  importaimagem-appcolor-prd.yaml
@@ -86,5 +90,3 @@ oc get is appcolor -n appcolor-${AMBIENTE}  -o json | jq -r '.metadata.name as $
 echo  ""
 
 oc logout  > /dev/null 2>&1
-
-

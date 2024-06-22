@@ -7,10 +7,10 @@ spec:
   lookupPolicy:
     local: true
   tags:
-  - name: {VERSAO}
+  - name: latest
     from:
       kind: DockerImage
-      name: image-registry.openshift-image-registry.svc:5000/appcolor/appcolor:{VERSAO}
+      name: image-registry.openshift-image-registry.svc:5000/appcolor/appcolor:pink
     importPolicy: {}
     referencePolicy:
       type: Source
