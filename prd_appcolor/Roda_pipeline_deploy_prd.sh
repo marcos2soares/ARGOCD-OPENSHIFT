@@ -71,7 +71,7 @@ VERSAO=latest
 
 VERSAO_ALT=$(echo "$VERSAO" | awk '{gsub(/\./, "-"); print}')
 
-
+sed -e "s/{VERSAO}/${VERSAO}/g" -e "s/{VERSAO_ALT}/${VERSAO_ALT}/g" appcolor-prd-hpa.yaml >  appcolor-prd-hpa_temp.yaml
 sed -e "s/{VERSAO}/${VERSAO}/g" -e "s/{VERSAO_ALT}/${VERSAO_ALT}/g"  appcolor-prd-deploy.yaml  > appcolor-prd-deploy_temp.yaml
 sed -e "s/{VERSAO}/${VERSAO}/g" -e "s/{VERSAO_ALT}/${VERSAO_ALT}/g" appcolor-prd-route.yaml  > appcolor-prd-route_temp.yaml
 sed -e "s/{VERSAO}/${VERSAO}/g" -e "s/{VERSAO_ALT}/${VERSAO_ALT}/g" appcolor-prd-svc.yaml  > appcolor-prd-svc_temp.yaml
@@ -82,6 +82,7 @@ mv aplication_appcolor_argocd_temp.yaml aplication_appcolor_argocd.yaml
 mv appcolor-prd-deploy_temp.yaml appcolor-prd-deploy.yaml
 mv appcolor-prd-route_temp.yaml appcolor-prd-route.yaml
 mv appcolor-prd-svc_temp.yaml appcolor-prd-svc.yaml
+mv appcolor-prd-hpa_temp.yaml appcolor-prd-hpa.yaml
 
 
 
