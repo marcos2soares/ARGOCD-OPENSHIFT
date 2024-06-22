@@ -106,7 +106,7 @@ echo ""
 green_text "CRIANDO APLICACAO appcolor - AMBIENTE: ${AMBIENTE}  - $VERSAODEV NO ARGOCD"
 echo ""
 
-
+cd $DIR
 
 oc apply -f $VERSAO/aplication_appcolor_argocd.yaml  | tee  result.txt
 
