@@ -19,7 +19,7 @@ spec:
         versao: latest
     spec:
       containers:
-        - image: appcolor:latest
+        - image: image-registry.openshift-image-registry.svc:5000/appcolor-prd/appcolor:latest
           name: appcolor
           imagePullPolicy: Always
           ports:
