@@ -84,7 +84,7 @@ green_text "LISTANDO AS IMAGENS NO IMAGESTREAM da APLICACAO appcolor-${AMBIENTE}
 echo ""
 
 
-oc get is appcolor -n appcolor-${AMBIENTE}  -o json | jq -r '.metadata.name as $name | .status.tags[].tag | "\($name):\(.)"'
+oc get is appcolor -n appcolor-${AMBIENTE}  -o json | jq -r '.metadata.name as $name | .status.tags[].tag | "\($name):\(.)"' | grep -v latest
 
 
 echo  ""
