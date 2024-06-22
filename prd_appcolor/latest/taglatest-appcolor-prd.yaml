@@ -10,7 +10,7 @@ spec:
   - name: latest
     from:
       kind: DockerImage
-      name: image-registry.openshift-image-registry.svc:5000/appcolor-prd/appcolor:pink
+      name: appcolor:pink
     importPolicy: {}
     referencePolicy:
       type: Source
