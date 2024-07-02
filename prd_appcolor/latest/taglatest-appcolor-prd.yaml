@@ -2,7 +2,7 @@ apiVersion: image.openshift.io/v1
 kind: ImageStream
 metadata:
   name: appcolor
-  namespace: appcolor-prd
+  namespace: openshift
 spec:
   lookupPolicy:
     local: true
@@ -10,7 +10,7 @@ spec:
   - name: latest
     from:
       kind: DockerImage
-      name: image-registry.openshift-image-registry.svc:5000/appcolor-prd/appcolor:green
+      name: image-registry.openshift-image-registry.svc:5000/openshift/appcolor:{VERSAO}
     importPolicy: {}
     referencePolicy:
       type: Source

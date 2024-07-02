@@ -3,23 +3,23 @@ kind: Deployment
 metadata:
   labels:
     app: appcolor
-    versao: latest
-    app.kubernetes.io/part-of: appcolor-prd-latest
-  name: appcolor-prd-deploy-latest
+    versao: {VERSAO}
+    app.kubernetes.io/part-of: appcolor-prd-{VERSAO}
+  name: appcolor-prd-deploy-{VERSAO}
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: appcolor
-      versao: latest
+      versao: {VERSAO}
   template:
     metadata:
       labels:
         app: appcolor
-        versao: latest
+        versao: {VERSAO}
     spec:
       containers:
-        - image: image-registry.openshift-image-registry.svc:5000/appcolor-prd/appcolor:latest
+        - image: image-registry.openshift-image-registry.svc:5000/openshift/appcolor:{VERSAO}
           name: appcolor
           imagePullPolicy: Always
           ports:

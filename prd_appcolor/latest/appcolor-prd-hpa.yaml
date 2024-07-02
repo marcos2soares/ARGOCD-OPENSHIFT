@@ -2,10 +2,10 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: appcolor-prd-hpa-latest
+  name: appcolor-prd-hpa-{VERSAO}
   labels:
     app: appcolor
-    versao: latest
+    versao: {VERSAO}
 spec:
   maxReplicas: 20
   metrics:
@@ -25,4 +25,4 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: appcolor-prd-deploy-latest
+    name: appcolor-prd-deploy-{VERSAO}

@@ -4,13 +4,13 @@ kind: Service
 metadata:
   labels:
     app: appcolor
-    versao: latest
-  name: appcolor-prd-svc-latest
+    versao: {VERSAO}
+  name: appcolor-prd-svc-{VERSAO_ALT}
 spec:
   ports:
-  - name: appcolor-prd-svc-port-latest
+  - name: appcolor-prd-svc-port-{VERSAO_ALT}
     port: 5000
     targetPort: 5000
   selector:
     app: appcolor
-    versao: latest
+    versao: {VERSAO}
