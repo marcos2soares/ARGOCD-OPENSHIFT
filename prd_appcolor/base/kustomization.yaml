@@ -6,5 +6,4 @@ resources:
 - appcolor-prd-deploy.yaml
 - appcolor-prd-route.yaml
 - appcolor-prd-svc.yaml
-- imagestream-appcolor.yaml
 - appcolor-prd-hpa.yaml
