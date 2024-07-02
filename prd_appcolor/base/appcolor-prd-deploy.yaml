@@ -19,7 +19,7 @@ spec:
         versao: {VERSAO}
     spec:
       containers:
-        - image: image-registry.openshift-image-registry.svc:5000/appcolor-prd/appcolor:{VERSAO}
+        - image: image-registry.openshift-image-registry.svc:5000/openshift/appcolor:{VERSAO}
           name: appcolor
           imagePullPolicy: Always
           ports:

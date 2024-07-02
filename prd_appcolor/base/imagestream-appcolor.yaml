@@ -5,6 +5,7 @@ metadata:
   labels:
     app: appcolor
   name: appcolor
+  namespace: openshift
 spec:
   lookupPolicy:
     local: true
