@@ -10,7 +10,7 @@ spec:
   - name: latest
     from:
       kind: DockerImage
-      name: image-registry.openshift-image-registry.svc:5000/openshift/appcolor:v1.0
+      name: image-registry.openshift-image-registry.svc:5000/openshift/appcolor:red
     importPolicy: {}
     referencePolicy:
       type: Source
