@@ -24,6 +24,9 @@ oc login -u vt121170 -p $SENHAOC
 
 cd $DIR
 
+echo "Remove Imagestream de Producao no Namespace Openshift se Existir"
+oc delete is appcolor -n openshift
+
 oc apply -f  ./aplication_appcolor_argocd.yaml
 
 oc logout 
