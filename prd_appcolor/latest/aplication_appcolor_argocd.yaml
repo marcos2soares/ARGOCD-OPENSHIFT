@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: appcolor-prd-{VERSAO}
+  name: appcolor-prd-latest
   namespace: openshift-gitops
 spec:
   destination:
@@ -9,7 +9,7 @@ spec:
     server: https://kubernetes.default.svc
   project: default
   source:
-    path: prd_appcolor/{VERSAO}
+    path: prd_appcolor/latest
     repoURL: https://github.com/marcos2soares/ARGOCD-OPENSHIFT.git
     targetRevision: HEAD
   syncPolicy:

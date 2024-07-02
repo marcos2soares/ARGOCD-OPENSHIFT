@@ -32,7 +32,7 @@ green_text "LISTANDO AS IMAGENS PROMOVIDAS PARA O IMAGESTREAM da APLICACAO appco
 echo ""
 
 
-oc get is appcolor -n appcolor-prd -o json | jq -r '.metadata.name as $name | .status.tags[].tag | "\($name):\(.)"' |  grep -v latest
+oc get is appcolor -n openshift -o json | jq -r '.metadata.name as $name | .status.tags[].tag | "\($name):\(.)"' |  grep -v latest
 
 
 echo  ""
